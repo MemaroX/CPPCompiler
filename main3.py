@@ -32,3 +32,15 @@ token_patterns = [
 
 # Combine patterns into a regex
 token_regex = '|'.join(f'(?P<{name}>{pattern})' for name, pattern in token_patterns)
+
+# Lexer function
+def tokenize(code):
+    tokens = []
+    for match in re.finditer(token_regex, code, re.MULTILINE):
+        kind = match.lastgroup
+        value = match.group(kind)
+        if kind == "WHITESPACE":
+            continue  # Ignore whitespace
+        tokens.append((kind, value))
+    return tokens
+
