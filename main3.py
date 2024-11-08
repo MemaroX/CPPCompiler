@@ -43,4 +43,25 @@ def tokenize(code):
             continue  # Ignore whitespace
         tokens.append((kind, value))
     return tokens
+# Main program loop
+def main():
+    print("Enter your code line by line. Type 'get_tokens' on a new line to display tokens.")
+    code_sample = []
+    
+    while True:
+        line = input()
+        if line.strip() == "get_tokens":
+            break
+        code_sample.append(line)
+    
+    # Combine lines into a single string for tokenizing
+    code_sample = "\n".join(code_sample)
+    
+    # Tokenize and display results
+    tokens = tokenize(code_sample)
+    print("\nTokens:")
+    for token in tokens:
+        print(token)
 
+# Run the main loop
+if __name__ == "__main__":
